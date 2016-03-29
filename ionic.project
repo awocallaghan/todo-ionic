@@ -1,0 +1,12 @@
+{
+  "name": "todo-ionic",
+  "app_id": "a5899f5b",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}

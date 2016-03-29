@@ -1,0 +1,50 @@
+<ion-view view-title="{{vm.list.name}}">
+
+
+  <!-- Secondary navigation button
+        - Add new todo
+    -->
+  <ion-nav-buttons side="secondary">
+    <!-- TODO: a settings modal.
+    <a class="button icon ion-wrench"
+       ng-click="vm.showSettings()">
+    </a>
+    -->
+    <a class="button icon ion-plus-circled"
+       ng-href="#/tab/newItem/list/{{vm.list.id}}">
+      New
+    </a>
+ </ion-nav-buttons>
+
+  <!-- Main content
+        - List of todo items
+        - Add new todo
+    -->
+  <ion-content class="padding">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="vm.refreshItems()">
+    </ion-refresher>
+    <!-- No lists message -->
+    <div ng-show="vm.list.todos.length == 0">
+      <p>Add a new task or a list of tasks in the top right.</p>
+    </div>
+    <ion-list>
+      <!-- List of todo items -->
+      <div ng-repeat="todo in vm.list.todos">
+        <!-- Show task item -->
+        <div ng-show="todo.type == 'task'">
+          <task-item task="todo"></task-item>
+        </div>
+        <!-- End show task -->
+
+        <!-- Show list item -->
+        <div ng-show="todo.type == 'list'">
+          <list-item list="todo" parentList="vm.list"></list-item>
+        </div>
+        <!-- End list item -->
+      </div>
+      <!-- End list of todo items -->
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+.completed {
+  color: green;
+  font-weight: bold;
+}
+
+.bar.bar-stable .title, .bar.bar-stable .button {
+  color: #f2f2f2;
+}
+
+.bar {
+  background-size: 100% 0px;
+}
+
+/* Fix to stop tabs being pushed down */
+.view-container {
+  position: inherit !important;
+}

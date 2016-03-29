@@ -1,0 +1,97 @@
+<ion-view view-title="Todo Lists">
+  <!-- Primary Navigation Button
+        - Edit ordering of lists and delete lists
+    -->
+  <ion-nav-buttons side="primary">
+    <button class="button icon ion-edit" ng-show="!vm.shouldShowEdit" ng-click="vm.shouldShowEdit = !vm.shoouldShowEdit">
+        Edit
+    </button>
+    <button class="button" ng-show="vm.shouldShowEdit" ng-click="vm.shouldShowEdit = !vm.shouldShowEdit">
+        Done
+    </button>
+  </ion-nav-buttons>
+
+  <!-- Secondary Navigation Button
+        - Add new todo list
+    -->
+  <ion-nav-buttons side="secondary">
+    <button class="button icon ion-plus-circled" ng-show="!vm.shouldShowAddNew" ng-click="vm.shouldShowAddNew = !vm.shouldShowAddNew">
+      New list
+    </button>
+  </ion-nav-buttons>
+
+  <!-- Main content
+        - Pull to refresh
+        - List of todo lists
+        - Add new todo
+    -->
+  <ion-content class="padding">
+    <!-- Pull to refresh -->
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="vm.refreshItems()">
+    </ion-refresher>
+
+    <!-- No lists message -->
+    <div ng-show="vm.lists.length == 0">
+      <p>Add a new list of tasks in the top right.</p>
+    </div>
+
+    <ion-list show-reorder="vm.shouldShowEdit" show-delete="vm.shouldShowEdit">
+      <!-- List of todo lists -->
+      <ion-item class="item-icon-left"
+                ng-repeat="list in vm.lists"
+                ng-href="#/tab/list/{{list.id}}">
+
+        <!-- Start delete list button -->
+        <ion-delete-button class="ion-minus-circled"
+                           ng-click="vm.delete(list)">
+        </ion-delete-button>
+        <!-- End delete list button -->
+
+        <div class="row">
+          <!-- Start folder icon column -->
+          <div class="col">
+            <i class="icon ion-folder"></i>
+            {{ list.name }}
+          </div>
+          <!-- End folder icon column -->
+          <!-- Start list progress -->
+          <div class="col">
+            <span ng-class="{completed: list.progress[0] == list.progress[1]}">
+              ({{list.progress[0]}}/{{list.progress[1]}})
+            </span>
+          </div>
+          <!-- End list progress -->
+        </div>
+
+        <!-- Start reorder list button -->
+        <ion-reorder-button class="ion-navicon"
+                            on-reorder="vm.reorder(list, $fromIndex, $toIndex)">
+        </ion-reorder-button>
+        <!-- End reorder list button -->
+      </ion-item>
+
+      <!-- Add new list form -->
+      <ion-item class="item" ng-show="vm.shouldShowAddNew">
+        <form>
+          <label class="item item-input item-input-wrapper">
+            <input type="text"
+                   placeholder="New Todo List"
+                   ng-model="vm.newList.name"
+                   autofocus>
+          </label>
+          <button class="button button-full button-positive"
+                  ng-click="vm.add(vm.newList.name)">
+            Add
+          </button>
+          <button class="button button-full button-stable"
+                  ng-click="vm.newList.name = ''; vm.shouldShowAddNew = false">
+            Cancel
+          </button>
+        </form>
+      </ion-item>
+      <!-- End add new list form -->
+    </ion-list>
+  </ion-content>
+</ion-view>

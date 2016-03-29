@@ -1,0 +1,24 @@
+<ion-item class="item-icon-left"
+          ng-href="#/tab/list/{{list.id}}">
+  <div class="row">
+    <!-- Start folder icon column -->
+    <div class="col">
+      <i class="icon ion-folder"></i>
+      {{ list.name }}
+    </div>
+    <!-- End folder icon column -->
+    <!-- Start list progress -->
+    <div class="col">
+      <span ng-class="{completed: list.progress[0] == list.progress[1]}">
+        ({{list.progress[0]}}/{{list.progress[1]}})
+      </span>
+    </div>
+    <!-- End list progress -->
+  </div>
+  <!-- Start slide options -->
+  <ion-option-button class="button-assertive"
+                     ng-click="vm.delete(list, parentList)">
+    Delete
+  </ion-option-button>
+  <!-- End slide options -->
+</ion-item>

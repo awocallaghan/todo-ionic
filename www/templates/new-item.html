@@ -1,0 +1,67 @@
+<ion-view view-title="Add new todo">
+
+  <!-- Main content
+
+    -->
+  <ion-content class="padding">
+    <div class="list">
+
+      <!-- Begin radio buttons for todo type -->
+      <div class="item item-divider">
+        Item type
+      </div>
+      <ion-radio value="task"
+                 ng-model="vm.newTodo.type">
+        Task to be completed
+      </ion-radio>
+      <ion-radio value="list"
+                 ng-model="vm.newTodo.type">
+        List of tasks to be completed
+      </ion-radio>
+      <!-- End radio buttons for type -->
+
+      <!-- Begin Task options -->
+      <div ng-show="vm.newTodo.type == 'task'">
+        <div class="item item-divider">
+          Task options
+        </div>
+        <form>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Task name</span>
+            <input type="text"
+                   placeholder="Something to be done!"
+                   ng-model="vm.newTodo.text">
+          </label>
+
+          <button class="button button-block button-positive"
+                  ng-click="vm.add(vm.newTodo)">
+            Add new task
+          </button>
+        </form>
+      </div>
+      <!-- End task options -->
+
+      <!-- Begin List options -->
+      <div ng-show="vm.newTodo.type == 'list'">
+        <div class="item item-divider">
+          List options
+        </div>
+        <form>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">List name</span>
+            <input type="text"
+                   placeholder="A lot of things to be done!"
+                   ng-model="vm.newTodo.name">
+          </label>
+
+          <button class="button button-block button-positive"
+                  ng-click="vm.add(vm.newTodo)">
+            Add new list
+          </button>
+        </form>
+      </div>
+      <!-- End List options -->
+    </div>
+  </ion-content>
+
+</ion-view>

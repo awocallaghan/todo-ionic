@@ -1,0 +1,26 @@
+<ion-item class="item-icon-right">
+  <!-- Start toggle checkbox -->
+  <label class="checkbox">
+    <input type="checkbox"
+           ng-model="task.completed">
+  </label>
+  <!-- End toggle checkbox -->
+
+  <span ng-hide="vm.editing">
+    {{task.text}}
+  </span>
+
+  <em ng-hide="task.deadline == null">
+    ({{ task.deadline | timeLeft }})
+  </em>
+
+  <a ng-click="vm.info(task)" href="">
+    <i class="icon ion-ios-information-outline"></i>
+  </a>
+
+  <ion-option-button class="button-assertive"
+                     ng-click="vm.delete(task)">
+    Delete
+  </ion-option-button>
+  <!-- End slide options -->
+</ion-item>

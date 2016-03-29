@@ -1,0 +1,14 @@
+{
+  "name": "todo-app",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.2.4"
+  },
+  "dependencies": {
+    "angular-google-plus": "^0.1.3",
+    "ngstorage": "^0.3.10",
+    "ion-datetime-picker": "^0.1.2",
+    "angular-moment": "^0.10.3",
+    "moment": "^2.12.0"
+  }
+}
